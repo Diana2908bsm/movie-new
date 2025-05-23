@@ -11,8 +11,13 @@ const goToMovie = (id) =>{
   router.push(`categoria/${id}`)
 }
 const MovieStore = useMovieStore()
+
+const movieTopId = (id) =>{
+  router.push(`movie/${id}`)
+}
 onMounted(() => {
   MovieStore.getCategory()
+  MovieStore.getPopularMovie()
 })
 </script>
 
@@ -34,7 +39,7 @@ onMounted(() => {
     <div class="top-film">
       <h3 class="top-film__title">Топ 10 фильмов с большим рейтингом </h3>
       <div class="top-film__inner">
-        <topFilm />
+        <topFilm v-for="movieTop in MovieStore.movieTop" :key="movieTop.id" :movieTop="movieTop" @goMovie = movieTopId />
       </div>
     </div>
   </div>

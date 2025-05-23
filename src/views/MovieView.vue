@@ -10,10 +10,12 @@ const route = useRoute()
 const movieId = route.params.id
 
 onMounted(()=>{
+    console.log(movieId)
     MovieStore.getMovieInfo(movieId)
 })
 </script>
 <template>
     <Header/>
-    <MovieCard :movie="MovieStore.movie"/>
+    <div v-if="MovieStore.loading" class="loading">загрузка...</div>
+    <MovieCard  :movie="MovieStore.movie"/>
 </template>
